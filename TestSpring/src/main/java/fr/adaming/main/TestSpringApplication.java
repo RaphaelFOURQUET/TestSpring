@@ -12,8 +12,6 @@ public class TestSpringApplication {
 	public static void main(String[] args) {
 		//SpringApplication.run(TestSpringApplication.class, args);
 		
-		//*************TEST IoC***********
-		
 		//Chargement conteneur
 		@SuppressWarnings("resource")
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
