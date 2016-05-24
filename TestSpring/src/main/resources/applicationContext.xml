@@ -8,7 +8,7 @@
     http://www.springframework.org/schema/aop 
     http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
 	
-	<!-- Config IoC  -->
+	<!-- IoC  -->
 
 	<!-- Déclaration bean Saxophone -->
 	<bean id="saxophone" class="fr.adaming.entity.Saxophone">
@@ -26,20 +26,37 @@
 		<property name="instrument" ref="piano"/>
 	</bean>
 	
+	<bean name="Jack" class="fr.adaming.entity.Musicien">
+		<property name="morceau" value="musiqueNulle"/>
+		<property name="instrument" ref="saxophone"/>
+	</bean>
 	
-	<!-- Configuration AOP -->
+	
+	<!-- Configuration AOP XML -->
 	
 	<bean id="spectateurs" class="fr.adaming.service.Spectateurs" />
 	
 	<aop:config>
 		<aop:pointcut id="servicePointcut"
-			expression="execution(* *.jouer(..))" />	<!-- .. : avec ou sans arguments acceptés / * *  : le premier * obligatoire, le second pour préciser n'importe quel appelant.-->
+			expression="execution(* *.performe(..))" />	<!-- .. : avec ou sans arguments acceptés / * *  : le premier * pour type de retour, le second pour préciser n'importe quel appelant.-->
 			
 		<aop:aspect id="spectateursAspect" ref="spectateurs">
 			<aop:before method="prendPlace" pointcut-ref="servicePointcut"/>
+			<aop:after-throwing method="demandeRemboursement" pointcut-ref="servicePointcut"/>
 			<aop:after-returning method="applaudit" returning="result" pointcut-ref="servicePointcut"/>
 		</aop:aspect>
 	
+	</aop:config>
+	
+	<!-- Fin Configuration AOP XML -->
+	
+	<!-- Configuration AOP par annotation -->
+	<bean id="spectateursAnnote" class="fr.adaming.service.SpectateursAnnote" />
+	
+	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>	<!-- ??? -->
+	
+	<aop:config>
+		<aop:aspect ref="spectateursAnnote"/>
 	</aop:config>
 
 </beans>

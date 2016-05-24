@@ -3,6 +3,8 @@
  */
 package fr.adaming.entity;
 
+import fr.adaming.exceptions.PerformanceException;
+
 /**
  * @author INTI-0332
  *
@@ -37,10 +39,12 @@ public class Musicien implements Performeur {
 
 
 
-	public void performe() {	//TODO exception
+	public void performe() throws PerformanceException {
 		System.out.println("Va jouer "+morceau+" au "+instrument.getName()+" :");
 		instrument.jouer();
 		//instrument.jouer("test");
+		if(!morceau.equals("Vive le vent"))
+			throw new PerformanceException();
 	}
 
 }

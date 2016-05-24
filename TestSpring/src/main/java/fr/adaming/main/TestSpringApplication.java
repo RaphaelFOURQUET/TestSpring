@@ -5,6 +5,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import fr.adaming.entity.Performeur;
+import fr.adaming.exceptions.PerformanceException;
 
 @SpringBootApplication
 public class TestSpringApplication {
@@ -18,8 +19,15 @@ public class TestSpringApplication {
 		
 		//Récuperation bean
 		Performeur performeur = (Performeur) context.getBean("Douglas");
+		Performeur performeurJ = (Performeur) context.getBean("Jack");
 		
 		//utilisation bean
-		performeur.performe();
+		try {
+			performeur.performe();
+			performeurJ.performe();
+		} catch (PerformanceException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+		}
 	}
 }

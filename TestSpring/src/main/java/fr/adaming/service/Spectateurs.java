@@ -9,8 +9,8 @@ package fr.adaming.service;
  */
 public class Spectateurs {
 	
-	public Spectateurs() {
-	}
+//	public Spectateurs() {
+//	}
 	
 	public void prendPlace() {
 		System.out.println("Les spectateurs prennent place !");
@@ -18,6 +18,10 @@ public class Spectateurs {
 	
 	public void applaudit() {
 		System.out.println("Les spectateurs applaudissent : Bravo !");
+	}
+	
+	public void demandeRemboursement() {
+		System.out.println("Spectateurs : Bouh ! Remboursez !");
 	}
 
 }
