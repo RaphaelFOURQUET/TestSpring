@@ -22,11 +22,13 @@
 	
 	<!-- Déclaration bean Musicien -->
 	<bean name="Douglas" class="fr.adaming.entity.Musicien">
+		<property name="name" value="Douglas"/>
 		<property name="morceau" value="Vive le vent"/>
 		<property name="instrument" ref="piano"/>
 	</bean>
 	
 	<bean name="Jack" class="fr.adaming.entity.Musicien">
+		<property name="name" value="Jack"/>
 		<property name="morceau" value="musiqueNulle"/>
 		<property name="instrument" ref="saxophone"/>
 	</bean>
@@ -58,5 +60,28 @@
 	<aop:config>
 		<aop:aspect ref="spectateursAnnote"/>
 	</aop:config>
+	
+	<!-- Fin Configuration AOP par annotation -->
+	
+	<!-- JDBCTemplate dans DAO -->
+	
+	<bean
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+    	<property name="location">
+        	<value>database.properties</value>
+    	</property>
+	</bean>
+	
+ 	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<!-- <property name="driverClassName" value="${jdbc.driverClassName}"/> -->
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}"/>
+		<property name="password" value="${jdbc.password}"/>
+	</bean>
+	
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
 
 </beans>

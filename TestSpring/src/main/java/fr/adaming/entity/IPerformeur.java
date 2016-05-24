@@ -9,7 +9,7 @@ import fr.adaming.exceptions.PerformanceException;
  * @author INTI-0332
  *
  */
-public interface Performeur {
+public interface IPerformeur {
 	
 	public void performe() throws PerformanceException;
 

@@ -31,5 +31,10 @@ public class SpectateursAnnote {
 	public void demandeRemboursement() {
 		System.out.println("SpectateursA : Bouh ! Remboursez !");
 	}
+	
+//	@Around("execution(* *.performe(..))")
+//	public void toto() {
+//		System.out.println("Toto n'est pas content !");
+//	}
 
 }

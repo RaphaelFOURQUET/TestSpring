@@ -4,7 +4,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import fr.adaming.entity.Performeur;
+import fr.adaming.entity.IPerformeur;
 import fr.adaming.exceptions.PerformanceException;
 
 @SpringBootApplication
@@ -18,8 +18,8 @@ public class TestSpringApplication {
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		
 		//Récuperation bean
-		Performeur performeur = (Performeur) context.getBean("Douglas");
-		Performeur performeurJ = (Performeur) context.getBean("Jack");
+		IPerformeur performeur = (IPerformeur) context.getBean("Douglas");
+		IPerformeur performeurJ = (IPerformeur) context.getBean("Jack");
 		
 		//utilisation bean
 		try {

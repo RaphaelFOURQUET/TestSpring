@@ -9,12 +9,26 @@ import fr.adaming.exceptions.PerformanceException;
  * @author INTI-0332
  *
  */
-public class Musicien implements Performeur {
+public class Musicien implements IPerformeur {
 	
+	private String name;
 	private String morceau;
 	private Instrument instrument;
 	
 	
+	
+	public String getName() {
+		return name;
+	}
+
+
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
+
 	public String getMorceau() {
 		return morceau;
 	}
