@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+    http://www.springframework.org/schema/aop 
+    http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+	
+	<!-- Config IoC  -->
+
+	<!-- Déclaration bean Saxophone -->
+	<bean id="saxophone" class="fr.adaming.entity.Saxophone">
+		<property name="name" value="saxophone"/>
+	</bean>
+	
+	<!-- Déclaration bean Piano -->
+	<bean id="piano" class="fr.adaming.entity.Piano">
+		<property name="name" value="piano"/>
+	</bean>
+	
+	<!-- Déclaration bean Musicien -->
+	<bean name="Douglas" class="fr.adaming.entity.Musicien">
+		<property name="morceau" value="Vive le vent"/>
+		<property name="instrument" ref="piano"/>
+	</bean>
+	
+	
+	<!-- Configuration AOP -->
+	
+	<bean id="spectateurs" class="fr.adaming.service.Spectateurs" />
+	
+	<aop:config>
+		<aop:pointcut id="servicePointcut"
+			expression="execution(* *.jouer(..))" />	<!-- .. : avec ou sans arguments acceptés / * *  : le premier * obligatoire, le second pour préciser n'importe quel appelant.-->
+			
+		<aop:aspect id="spectateursAspect" ref="spectateurs">
+			<aop:before method="prendPlace" pointcut-ref="servicePointcut"/>
+			<aop:after-returning method="applaudit" returning="result" pointcut-ref="servicePointcut"/>
+		</aop:aspect>
+	
+	</aop:config>
+
+</beans>
