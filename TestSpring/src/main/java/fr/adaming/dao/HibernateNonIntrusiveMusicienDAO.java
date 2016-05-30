@@ -3,9 +3,7 @@
  */
 package fr.adaming.dao;
 
-import javax.sql.DataSource;
-
-import org.springframework.jdbc.core.JdbcTemplate;
+import org.hibernate.SessionFactory;
 
 import fr.adaming.entity.Musicien;
 
@@ -13,13 +11,14 @@ import fr.adaming.entity.Musicien;
  * @author INTI-0332
  *
  */
-public class JDBCMusicienDAO implements IMusicienDAO {
+public class HibernateNonIntrusiveMusicienDAO implements IMusicienDAO {	//TODO choix entre jdbc hibernate ou non intrusif ?
 	
-	@SuppressWarnings("unused")
-	private JdbcTemplate jdbcTemplate;
-	
-	public void setDataSource(DataSource dataSource) {
-		this.jdbcTemplate = new JdbcTemplate(dataSource);
+	private SessionFactory sessionFactory;
+
+	@Override
+	public Musicien findMusicienById(int id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
@@ -30,7 +29,7 @@ public class JDBCMusicienDAO implements IMusicienDAO {
 
 	@Override
 	public void saveMusicien(Musicien musicien) {
-		// TODO Auto-generated method stub
+		sessionFactory.getCurrentSession().saveOrUpdate(musicien);
 		
 	}
 
@@ -44,12 +43,6 @@ public class JDBCMusicienDAO implements IMusicienDAO {
 	public void deleteMusicien(Musicien musicien) {
 		// TODO Auto-generated method stub
 		
-	}
-
-	@Override
-	public Musicien findMusicienById(int id) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }

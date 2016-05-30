@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="developpeur" class="fr.adaming.spring.demo.Developpeur">
+		<property name="nom" value="Olivier"/>
+		<property name="anneesExperience">
+			<value>7</value>
+		</property>
+	</bean>
+	
+	<bean id="chefDeveloppeur" class="fr.adaming.spring.demo.Developpeur">
+		<property name="nom" value="Franck"/>
+		<property name="anneesExperience" value="10"/>
+	</bean>
+	
+	<bean id="societeDevLogiciel" class="fr.adaming.spring.demo.SocieteDevLogiciel">
+		<property name="developpeur" ref="developpeur"/>
+		<property name="chefDeveloppeur" ref="chefDeveloppeur"/>
+	</bean>
+
+	<bean id="developpeurT" name="Toto"
+		class="fr.adaming.spring.demo.Developpeur">
+		<property name="nom" value="Toto"></property>
+		<property name="anneesExperience" value="0"></property>
+	</bean>
+</beans>

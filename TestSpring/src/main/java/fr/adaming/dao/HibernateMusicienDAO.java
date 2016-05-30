@@ -3,9 +3,9 @@
  */
 package fr.adaming.dao;
 
-import javax.sql.DataSource;
+import java.util.List;
 
-import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.orm.hibernate5.HibernateTemplate;
 
 import fr.adaming.entity.Musicien;
 
@@ -13,13 +13,12 @@ import fr.adaming.entity.Musicien;
  * @author INTI-0332
  *
  */
-public class JDBCMusicienDAO implements IMusicienDAO {
+public class HibernateMusicienDAO implements IMusicienDAO {	//TODO : difference avec JDBCMusicienDAO ???
 	
-	@SuppressWarnings("unused")
-	private JdbcTemplate jdbcTemplate;
+	private HibernateTemplate hibernateTemplate;
 	
-	public void setDataSource(DataSource dataSource) {
-		this.jdbcTemplate = new JdbcTemplate(dataSource);
+	public void setHibernateTemplate(HibernateTemplate template) {
+		this.hibernateTemplate = template;
 	}
 
 	@Override
@@ -30,7 +29,7 @@ public class JDBCMusicienDAO implements IMusicienDAO {
 
 	@Override
 	public void saveMusicien(Musicien musicien) {
-		// TODO Auto-generated method stub
+		hibernateTemplate.saveOrUpdate(musicien);
 		
 	}
 
@@ -48,8 +47,14 @@ public class JDBCMusicienDAO implements IMusicienDAO {
 
 	@Override
 	public Musicien findMusicienById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		//FIXME
+		@SuppressWarnings("unchecked")
+		List<Musicien> results = (List<Musicien>) hibernateTemplate.find("from Musicien where id = 1");
+		
+		return results.size() > 0 ? (Musicien) results.get(0) : null;
 	}
+
+	
+	
 
 }

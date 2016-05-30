@@ -11,9 +11,15 @@ import fr.adaming.exceptions.PerformanceException;
  */
 public class Musicien implements IPerformeur {
 	
+	private int id;
+	
 	private String name;
 	private String morceau;
 	private Instrument instrument;
+	
+	public int getId() {
+		return this.id;
+	}
 	
 	
 	

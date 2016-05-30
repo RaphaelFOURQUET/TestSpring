@@ -4,12 +4,14 @@ import fr.adaming.entity.Musicien;
 
 public interface IMusicienDAO {
 	
-	public Musicien findMusicienByName();
+	public Musicien findMusicienById(int id);
 	
-	public void save();
+	public Musicien findMusicienByName(String name);
 	
-	public void edit();
+	public void saveMusicien(Musicien musicien);
 	
-	public void delete();
+	public void editMusicien(Musicien musicien);
+	
+	public void deleteMusicien(Musicien musicien);
 
 }
